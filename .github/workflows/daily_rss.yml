@@ -22,7 +22,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests beautifulsoup4 PyRSS2Gen
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 PyRSS2Gen lxml
 
     - name: Run script
       run: python main.py
@@ -31,6 +32,6 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add hf_edge_ai_north_america.xml
+        git add .
         git commit -m "Update RSS feed" || exit 0
         git push
