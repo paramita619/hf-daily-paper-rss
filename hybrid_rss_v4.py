@@ -1031,9 +1031,10 @@ Content-Transfer-Encoding: 8bit
             key_points = article.get('key_points', {})
             detail = article.get('detailed_explanation', '')
             
+            # 锚点必须在article-box之前！
             article_html = f'''
+        <a id="article-{article_index}" name="article-{article_index}"></a>
         <div class="article-box">
-            <a id="article-{article_index}" name="article-{article_index}"></a>
             <div class="article-title">{title}</div>
             <div class="article-meta">分类: {category} | 机构: {author}</div>
             
