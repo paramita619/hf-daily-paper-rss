@@ -15,10 +15,10 @@ from bs4 import BeautifulSoup
 import re
 import xml.etree.ElementTree as ET
 from typing import List, Dict, Tuple, Set
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 import time
-
+import os
 
 # ================= 📊 数据结构定义 =================
 
@@ -39,12 +39,8 @@ class Article:
     description: str = ""
     author: str = ""
     score: float = 0.0
-    reasons: List[str] = None
+    reasons: List[str] = field(default_factory=list)
     category: str = ""
-    
-    def __post_init__(self):
-        if self.reasons is None:
-            self.reasons = []
 
 
 # ================= 🎯 权威知识库 =================
@@ -382,6 +378,7 @@ HEADERS = {
 
 def clean_text(text: str) -> str:
     """清理文本"""
+    if not text: return ""
     return re.sub(r'\s+', ' ', text).strip()
 
 
@@ -467,30 +464,31 @@ def fetch_hacker_news() -> List[Article]:
     """抓取Hacker News（需严格筛选）"""
     print("📰 Fetching Hacker News...")
     try:
-        ids = requests.get(
-            "https://hacker-news.firebaseio.com/v0/topstories.json",
-            timeout=10
-        ).json()[:40]  # 只看前40条
-        
+        # 使用 Algolia API 搜索关键词，比抓取首页更精准
+        queries = ["edge ai", "on-device", "llm", "npu", "quantization", "apple intelligence"]
         articles = []
-        for id in ids:
+        seen_ids = set()
+        
+        for q in queries:
             try:
-                item = requests.get(
-                    f"https://hacker-news.firebaseio.com/v0/item/{id}.json",
-                    timeout=5
-                ).json()
+                url = f"https://hn.algolia.com/api/v1/search_by_date?query={q}&tags=story&hitsPerPage=10"
+                resp = requests.get(url, timeout=5).json()
                 
-                if item and 'title' in item:
-                    # 优先使用URL，如果没有则使用HN讨论链接
-                    link = item.get('url', f"https://news.ycombinator.com/item?id={id}")
+                for hit in resp.get('hits', []):
+                    obj_id = hit.get('objectID')
+                    if obj_id in seen_ids: continue
+                    seen_ids.add(obj_id)
                     
-                    articles.append(Article(
-                        title=clean_text(item['title']),
-                        link=link,
-                        source="Hacker News"
-                    ))
+                    title = clean_text(hit.get('title'))
+                    link = hit.get('url') or f"https://news.ycombinator.com/item?id={obj_id}"
                     
-                time.sleep(0.05)  # 礼貌性延迟
+                    if title:
+                        articles.append(Article(
+                            title=title,
+                            link=link,
+                            source="Hacker News"
+                        ))
+                time.sleep(0.1)
             except:
                 continue
         
@@ -544,29 +542,35 @@ def fetch_a16z() -> List[Article]:
     """抓取a16z（顶级VC视角）"""
     print("📰 Fetching a16z...")
     try:
-        resp = requests.get("https://a16z.com/", headers=HEADERS, timeout=10)
+        resp = requests.get("https://a16z.com/news-content/", headers=HEADERS, timeout=10)
         soup = BeautifulSoup(resp.text, 'html.parser')
         
         articles = []
-        for h_tag in soup.find_all(['h2', 'h3', 'h4'])[:20]:
-            link = h_tag.find('a')
-            if link:
-                title = clean_text(link.get_text())
-                href = link.get('href', '')
-                
-                # 确保是完整URL
+        for link in soup.find_all('a', href=True):
+            title = clean_text(link.get_text())
+            href = link['href']
+            
+            # 简单的启发式过滤
+            if len(title) > 15 and "ai" in href.lower():
                 if href.startswith('/'):
                     href = 'https://a16z.com' + href
                 
-                if len(title) > 15 and href:
-                    articles.append(Article(
-                        title=title,
-                        link=href,
-                        source="a16z"
-                    ))
+                articles.append(Article(
+                    title=title,
+                    link=href,
+                    source="a16z"
+                ))
         
-        print(f"  ✓ Found {len(articles)} articles")
-        return articles
+        # 去重
+        seen = set()
+        unique = []
+        for a in articles:
+            if a.link not in seen:
+                seen.add(a.link)
+                unique.append(a)
+                
+        print(f"  ✓ Found {len(unique)} articles")
+        return unique
     except Exception as e:
         print(f"  ✗ Error: {e}")
         return []
@@ -668,16 +672,16 @@ def main():
             pubDate=datetime.datetime.now()
         ))
     
-    # 生成RSS文件
+    # 生成RSS文件 (修改为当前目录，适配 GitHub Actions)
     rss = PyRSS2Gen.RSS2(
         title="🧠 Intelligent AI & Tech Feed",
-        link="https://github.com/yourusername/intelligent-rss",
+        link="https://github.com/paramita619/hf-daily-paper-rss",
         description="High-quality, authority-focused feed for AI research, edge computing, and technical breakthroughs. Powered by multi-dimensional scoring.",
         lastBuildDate=datetime.datetime.now(),
         items=rss_items
     )
     
-    output_file = "/home/claude/intelligent_feed.xml"
+    output_file = "edge_ai_daily.xml"  # 修复后的文件名
     with open(output_file, "w", encoding='utf-8') as f:
         rss.write_xml(f)
     
@@ -689,33 +693,12 @@ def main():
     print(f"Unique articles: {len(unique_articles)}")
     print(f"Articles passed filter: {len(selected_articles)}")
     print(f"Articles rejected: {rejected_count}")
-    print(f"Pass rate: {len(selected_articles)/len(unique_articles)*100:.1f}%")
+    pass_rate = len(selected_articles)/len(unique_articles)*100 if unique_articles else 0
+    print(f"Pass rate: {pass_rate:.1f}%")
     print()
     
-    # 分类统计
-    category_counts = {}
-    for article in selected_articles:
-        category_counts[article.category] = category_counts.get(article.category, 0) + 1
-    
-    print("📂 By Category:")
-    for category, count in sorted(category_counts.items(), key=lambda x: x[1], reverse=True):
-        print(f"  {category}: {count}")
-    print()
-    
-    # 来源统计
-    source_counts = {}
-    for article in selected_articles:
-        source_counts[article.source] = source_counts.get(article.source, 0) + 1
-    
-    print("📡 By Source:")
-    for source, count in sorted(source_counts.items(), key=lambda x: x[1], reverse=True):
-        print(f"  {source}: {count}")
-    
-    print()
     print(f"✅ RSS feed generated: {output_file}")
-    print(f"🎯 Top article: {selected_articles[0].title if selected_articles else 'None'}")
     print("="*60)
-
 
 if __name__ == "__main__":
     main()
