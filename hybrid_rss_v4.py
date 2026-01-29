@@ -581,31 +581,41 @@ class TemplateEngine:
         impact = analysis['impact']
         
         # 提取关键元素
-        tech = entities.get('technologies', ['AI'])
-        company = entities.get('companies', [''])
+        tech_list = entities.get('technologies', [])
+        tech = tech_list[0] if tech_list else ''
+        
+        company_list = entities.get('companies', [])
+        company = company_list[0] if company_list else ''
         
         # 根据类别和主题生成标题
         if category == '模型算法':
             if '端侧AI部署' in themes:
-                return f"{tech[0].upper() if tech else 'AI'}端侧部署技术突破"
+                tech_name = tech.upper() if tech else 'AI'
+                return f"{tech_name}端侧部署技术突破"
             elif '模型压缩优化' in themes:
-                return f"新型{tech[0] if tech else 'AI'}模型压缩方法"
+                tech_name = tech if tech else 'AI'
+                return f"新型{tech_name}模型压缩方法"
             elif innovations and '性能提升' in innovations[0]:
-                return f"高性能{tech[0] if tech else 'AI'}模型架构研究"
+                tech_name = tech if tech else 'AI'
+                return f"高性能{tech_name}模型架构研究"
             else:
-                return f"{tech[0].upper() if tech else 'AI'}模型算法新进展"
+                tech_name = tech.upper() if tech else 'AI'
+                return f"{tech_name}模型算法新进展"
         
         elif category == '平台底座':
             if '硬件加速' in themes:
-                return f"{company[0] if company else '新一代'}AI加速平台发布"
+                comp_name = company if company else '新一代'
+                return f"{comp_name}AI加速平台发布"
             elif '开源工具' in themes:
-                return f"{tech[0] if tech else 'AI'}开源框架重大更新"
+                tech_name = tech if tech else 'AI'
+                return f"{tech_name}开源框架重大更新"
             else:
-                return f"{tech[0] if tech else 'AI'}推理引擎性能优化"
+                tech_name = tech if tech else 'AI'
+                return f"{tech_name}推理引擎性能优化"
         
         elif category == '行业动态':
             if company:
-                comp = company[0].title()
+                comp = company.title()
                 if '产品发布' in themes:
                     return f"{comp}发布AI驱动新品"
                 else:
@@ -665,32 +675,37 @@ class TemplateEngine:
     @staticmethod
     def _generate_content_brief(category: str, themes: list, entities: dict, sample: str) -> str:
         """生成内容简述"""
-        tech = entities.get('technologies', [])
-        company = entities.get('companies', [])
-        models = entities.get('models', [])
+        tech_list = entities.get('technologies', [])
+        tech = tech_list[0] if tech_list else 'AI'
+        
+        company_list = entities.get('companies', [])
+        company = company_list[0] if company_list else None
+        
+        models_list = entities.get('models', [])
+        models = models_list[0] if models_list else None
         
         if category == '模型算法':
             if '端侧AI部署' in themes:
-                return f"本文介绍了一种针对端侧设备的{tech[0] if tech else 'AI'}模型优化方案，通过创新的压缩和加速技术，实现了在资源受限环境下的高效推理。研究团队详细阐述了算法设计思路、实现细节以及在多个基准测试上的性能表现。"
+                return f"本文介绍了一种针对端侧设备的{tech}模型优化方案，通过创新的压缩和加速技术，实现了在资源受限环境下的高效推理。研究团队详细阐述了算法设计思路、实现细节以及在多个基准测试上的性能表现。"
             elif '模型压缩优化' in themes:
-                return f"研究团队提出了一种新型的{tech[0] if tech else 'AI'}模型压缩方法，通过结合量化、剪枝和知识蒸馏技术，在保持精度的同时显著降低了模型规模和计算复杂度。实验结果表明该方法在多个任务上都取得了优异的性能。"
+                return f"研究团队提出了一种新型的{tech}模型压缩方法，通过结合量化、剪枝和知识蒸馏技术，在保持精度的同时显著降低了模型规模和计算复杂度。实验结果表明该方法在多个任务上都取得了优异的性能。"
             elif models:
-                return f"本文详细介绍了{models[0]}模型的最新改进，包括架构优化、训练策略创新以及推理加速方案。研究团队通过大量实验验证了所提方法的有效性，为大规模模型的实用化部署提供了新思路。"
+                return f"本文详细介绍了{models}模型的最新改进，包括架构优化、训练策略创新以及推理加速方案。研究团队通过大量实验验证了所提方法的有效性，为大规模模型的实用化部署提供了新思路。"
             else:
                 return "本文深入探讨了AI模型算法的最新进展，从理论基础到工程实践，全面分析了当前技术路线的优势与挑战。研究工作涵盖了模型设计、训练优化和性能评估等多个方面，为领域发展提供了宝贵的参考。"
         
         elif category == '平台底座':
             if '硬件加速' in themes:
-                comp = company[0] if company else '研究团队'
+                comp = company if company else '研究团队'
                 return f"{comp}发布了新一代AI加速解决方案，通过软硬件协同优化，大幅提升了模型推理性能。该方案支持多种主流框架，为开发者提供了统一的接口和高效的运行时环境，显著降低了AI应用的部署门槛。"
             elif '开源工具' in themes:
-                fw = tech[0] if tech else 'AI框架'
+                fw = tech
                 return f"{fw}发布重大更新，新增多项实用功能和性能优化。此次更新重点改进了推理引擎的效率，优化了内存管理机制，并扩展了对新型硬件的支持。开源社区对此反响热烈，认为这将加速AI技术的落地应用。"
             else:
                 return "本文介绍了AI基础设施领域的最新进展，涵盖框架优化、硬件适配和工具链完善等多个维度。通过技术创新和工程实践的结合，为构建高效的AI系统提供了坚实的底层支撑。"
         
         elif category == '行业动态':
-            comp = company[0].title() if company else '科技企业'
+            comp = company.title() if company else '科技企业'
             if '产品发布' in themes:
                 return f"{comp}正式发布搭载先进AI功能的全新产品，为用户带来智能化升级体验。产品集成了最新的机器学习技术，实现了本地化处理与云端协同的完美结合，在保护隐私的同时提供强大的AI能力。"
             else:
@@ -707,7 +722,8 @@ class TemplateEngine:
     @staticmethod
     def _generate_key_innovation(innovations: list, metrics: dict, tech_depth: str, entities: dict) -> str:
         """生成关键创新"""
-        tech = entities.get('technologies', [])
+        tech_list = entities.get('technologies', [])
+        tech = tech_list[0] if tech_list else None
         
         innovation_text = ""
         
@@ -720,7 +736,7 @@ class TemplateEngine:
                 innovation_text += f"实测显示{perf}，"
             
             if tech:
-                innovation_text += f"该方案基于{tech[0]}技术栈，"
+                innovation_text += f"该方案基于{tech}技术栈，"
             
             innovation_text += "通过系统性的优化策略，实现了性能与效率的最优平衡。"
         
@@ -807,7 +823,8 @@ class TemplateEngine:
     @staticmethod
     def _generate_background_section(category: str, themes: list, entities: dict) -> str:
         """生成背景部分"""
-        tech = entities.get('technologies', ['AI'])[0]
+        tech_list = entities.get('technologies', [])
+        tech = tech_list[0] if tech_list else 'AI'
         
         if category == '模型算法':
             if '端侧AI部署' in themes:
@@ -830,13 +847,14 @@ class TemplateEngine:
     @staticmethod
     def _generate_technical_section(category: str, tech_depth: str, entities: dict, paragraphs: list) -> str:
         """生成技术方案部分"""
-        tech = entities.get('technologies', [''])
+        tech_list = entities.get('technologies', [])
+        tech = tech_list[0] if tech_list else None
         
         if tech_depth == "深度技术":
             base = "从技术实现角度看，该方案采用了多层次的优化策略。在算法设计上，研究团队提出了创新的数学模型，通过理论分析证明了方法的收敛性和最优性"
             
             if tech:
-                base += f"。具体而言，核心技术基于{tech[0]}框架，"
+                base += f"。具体而言，核心技术基于{tech}框架，"
             else:
                 base += "。"
             
@@ -903,7 +921,8 @@ class TemplateEngine:
             base += "。基础设施的完善对整个AI生态具有乘数效应，优秀的框架和工具能够降低技术门槛，让更多开发者参与到AI应用的创新中来。这种底层能力的提升，最终将转化为上层应用的繁荣"
         
         elif category == '行业动态':
-            comp = entities.get('companies', ['龙头企业'])[0].title()
+            comp_list = entities.get('companies', [])
+            comp = comp_list[0].title() if comp_list else '龙头企业'
             base += f"。{comp}的战略选择往往具有风向标意义，其在AI领域的布局和投入力度，反映了行业对技术未来的集体判断。随着越来越多的企业加入竞争，AI技术的进步将持续加速"
         
         else:  # 大V访谈
