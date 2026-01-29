@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<rss version="2.0"><channel><title>🚀 Ultimate AI Feed - Authority First, Signal Over Noise</title><link>https://github.com/paramita619/hf-daily-paper-rss</link><description>Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.</description><lastBuildDate>Thu, 29 Jan 2026 03:45:31 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[1] [大V/权威] Anthropic, Apple, OpenAI CEOs condemn ICE violence, praise Trump</title><link>https://techcrunch.com/2026/01/28/anthropic-and-openai-ceos-condemn-ice-violence-praise-trump/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+<rss version="2.0"><channel><title>🚀 Ultimate AI Feed - Authority First, Signal Over Noise</title><link>https://github.com/paramita619/hf-daily-paper-rss</link><description>Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.</description><lastBuildDate>Thu, 29 Jan 2026 05:45:28 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[1] [大V/权威] Anthropic, Apple, OpenAI CEOs condemn ICE violence, praise Trump</title><link>https://techcrunch.com/2026/01/28/anthropic-and-openai-ceos-condemn-ice-violence-praise-trump/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 355&lt;/strong&gt; | Category: 大V/权威&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -8,12 +8,12 @@
 &lt;li&gt;✓A-Domain:techcrunch.com(+30)&lt;/li&gt;
 &lt;li&gt;🏆S-Authority:dario amodei(+100)&lt;/li&gt;
 &lt;li&gt;🏆S-Authority:sam altman(+100)&lt;/li&gt;
-&lt;li&gt;⭐A-Authority:anthropic(+70)&lt;/li&gt;
 &lt;li&gt;⭐A-Authority:openai(+70)&lt;/li&gt;
+&lt;li&gt;⭐A-Authority:anthropic(+70)&lt;/li&gt;
 &lt;li&gt;❌Industry-Gate:fail(-30)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Anthropic's Dario Amodei and OpenAI's Sam Altman spoke out against ICE enforcement tactics following Minneapolis violence, with one addressing concerns publicly and the other in an internal message....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[2] [平台底座] Show HN: Free On-Device AI SDK to Run PyTorch on Mobile NPUs (Open Source)</title><link>https://github.com/zetic-ai/ZETIC_MLange_apps</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[2] [平台底座] Show HN: Free On-Device AI SDK to Run PyTorch on Mobile NPUs (Open Source)</title><link>https://github.com/zetic-ai/ZETIC_MLange_apps</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 205&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: github.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -25,7 +25,7 @@
 &lt;li&gt;L1-Tech:on-device ai(+40)&lt;/li&gt;
 &lt;li&gt;opensource_tool&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[3] [模型算法] FreeFix: Boosting 3D Gaussian Splatting via Fine-Tuning-Free Diffusion Models</title><link>http://arxiv.org/abs/2601.20857v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[3] [模型算法] FreeFix: Boosting 3D Gaussian Splatting via Fine-Tuning-Free Diffusion Models</title><link>http://arxiv.org/abs/2601.20857v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 145&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -37,7 +37,7 @@
 &lt;li&gt;L3-Tech:rag(+15)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Neural Radiance Fields and 3D Gaussian Splatting have advanced novel view synthesis, yet still rely on dense inputs and often degrade at extrapolated views. Recent approaches leverage generative models, such as diffusion models, to provide additional supervision, but face a trade-off between generalization and fidelity: fine-tuning diffusion models...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[4] [模型算法] Smoothing the Black-Box: Signed-Distance Supervision for Black-Box Model Copying</title><link>http://arxiv.org/abs/2601.20773v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[4] [模型算法] Smoothing the Black-Box: Signed-Distance Supervision for Black-Box Model Copying</title><link>http://arxiv.org/abs/2601.20773v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 115&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -47,19 +47,19 @@
 &lt;li&gt;L1-Tech:npu(+40)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Deployed machine learning systems must continuously evolve as data, architectures, and regulations change, often without access to original training data or model internals. In such settings, black-box copying provides a practical refactoring mechanism, i.e. upgrading legacy models by learning replicas from input-output queries alone. When restrict...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[5] [平台底座] Executorch: On-device AI across mobile, embedded and edge for PyTorch</title><link>https://github.com/pytorch/executorch</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[5] [平台底座] Executorch: On-device AI across mobile, embedded and edge for PyTorch</title><link>https://github.com/pytorch/executorch</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 112&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: github.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Source:Hacker News(+10)&lt;/li&gt;
 &lt;li&gt;✓A-Domain:github.com(+30)&lt;/li&gt;
-&lt;li&gt;L1-Tech:on-device(+40)&lt;/li&gt;
 &lt;li&gt;L1-Tech:executorch(+40)&lt;/li&gt;
+&lt;li&gt;L1-Tech:on-device(+40)&lt;/li&gt;
 &lt;li&gt;L1-Tech:on-device ai(+40)&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.7&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[6] [平台底座] Local Browser – On-Device AI Web Automation</title><link>https://github.com/RunanywhereAI/on-device-browser-agent</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[6] [平台底座] Local Browser – On-Device AI Web Automation</title><link>https://github.com/RunanywhereAI/on-device-browser-agent</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 108&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: github.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -70,7 +70,7 @@
 &lt;li&gt;L1-Tech:on-device ai(+40)&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.9&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[7] [模型算法] MemCtrl: Using MLLMs as Active Memory Controllers on Embodied Agents</title><link>http://arxiv.org/abs/2601.20831v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[7] [模型算法] MemCtrl: Using MLLMs as Active Memory Controllers on Embodied Agents</title><link>http://arxiv.org/abs/2601.20831v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 105&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -81,7 +81,7 @@
 &lt;li&gt;L3-Tech:rag(+15)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Foundation models rely on in-context learning for personalized decision making. The limited size of this context window necessitates memory compression and retrieval systems like RAG. These systems however often treat memory as large offline storage spaces, which is unfavorable for embodied agents that are expected to operate under strict memory an...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[8] [模型算法] Context-Augmented Code Generation Using Programming Knowledge Graphs</title><link>http://arxiv.org/abs/2601.20810v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[8] [模型算法] Context-Augmented Code Generation Using Programming Knowledge Graphs</title><link>http://arxiv.org/abs/2601.20810v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 105&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -92,7 +92,7 @@
 &lt;li&gt;L3-Tech:rag(+15)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Large Language Models (LLMs) excel at code generation but struggle with complex problems. Retrieval-Augmented Generation (RAG) mitigates this issue by integrating external knowledge, yet retrieval models often miss relevant context, and generation models hallucinate with irrelevant data. We propose Programming Knowledge Graph (PKG) for semantic rep...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[9] [行业动态] Tiny startup Arcee AI built a 400B-parameter open source LLM from scratch to best Meta’s Llama</title><link>https://techcrunch.com/2026/01/28/tiny-startup-arcee-ai-built-a-400b-open-source-llm-from-scratch-to-best-metas-llama/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[9] [行业动态] Tiny startup Arcee AI built a 400B-parameter open source LLM from scratch to best Meta’s Llama</title><link>https://techcrunch.com/2026/01/28/tiny-startup-arcee-ai-built-a-400b-open-source-llm-from-scratch-to-best-metas-llama/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 100&lt;/strong&gt; | Category: 行业动态&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -103,7 +103,7 @@
 &lt;li&gt;real_release&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; 30-person startup Arcee AI has released a 400B model called Trinity, which it says is one of the biggest open source foundation models from a U.S. company....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item><item><title>[10] [行业动态] Google pitches Gemini to students studying for India’s most competitive college entrance exam</title><link>https://techcrunch.com/2026/01/28/google-turns-gemini-toward-indias-most-competitive-entrance-exam/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item><item><title>[10] [行业动态] Google pitches Gemini to students studying for India’s most competitive college entrance exam</title><link>https://techcrunch.com/2026/01/28/google-turns-gemini-toward-indias-most-competitive-entrance-exam/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 100&lt;/strong&gt; | Category: 行业动态&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -114,4 +114,4 @@
 &lt;li&gt;real_release&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Google's launch of practice tests for JEE follows its recent move to offer full-length SAT practice tests in Gemini....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 03:45:31 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><pubDate>Thu, 29 Jan 2026 05:45:28 GMT</pubDate></item></channel></rss>
