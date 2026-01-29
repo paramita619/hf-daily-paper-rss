@@ -197,19 +197,26 @@ def content_fingerprint(title: str, desc: str = "") -> str:
     return hashlib.md5(" ".join(sorted(key_words[:15])).encode()).hexdigest()
 
 def parse_date_from_arxiv(link: str) -> datetime.datetime:
-    """从arXiv链接提取提交日期"""
+    """从arXiv链接提取提交日期 (返回 UTC)"""
     # arXiv格式: https://arxiv.org/abs/YYMM.NNNNN
     match = re.search(r'/(\d{4})\.', link)
     if match:
         yymm = match.group(1)
         year = 2000 + int(yymm[:2])
         month = int(yymm[2:])
-        return datetime.datetime(year, month, 1)
-    return datetime.datetime.now()
+        # 强制使用 UTC
+        return datetime.datetime(year, month, 1, tzinfo=datetime.timezone.utc)
+    return datetime.datetime.now(datetime.timezone.utc)
 
 def time_decay_factor(pub_date: datetime.datetime) -> float:
-    """时效性衰减因子（0.5-1.0）"""
-    now = datetime.datetime.now()
+    """时效性衰减因子（0.5-1.0）- 修复 Timezone 报错"""
+    # 1. 统一使用 UTC 当前时间
+    now = datetime.datetime.now(datetime.timezone.utc)
+    
+    # 2. 如果文章时间没有时区（Naive），强制加上 UTC
+    if pub_date.tzinfo is None:
+        pub_date = pub_date.replace(tzinfo=datetime.timezone.utc)
+        
     hours_old = (now - pub_date).total_seconds() / 3600
     
     if hours_old < 24:
@@ -559,7 +566,7 @@ def fetch_huggingface():
                     "link": normalize_url(link),
                     "source": "HF Papers",
                     "desc": desc,
-                    "pub_date": datetime.datetime.now()
+                    "pub_date": datetime.datetime.now(datetime.timezone.utc)  # UTC
                 })
         
         print(f"  ✓ Found {len(articles)} papers")
@@ -594,7 +601,7 @@ def fetch_arxiv():
                 link = link_tag.text
                 
                 # 解析发布日期
-                pub_date = datetime.datetime.now()
+                pub_date = datetime.datetime.now(datetime.timezone.utc)
                 if published_tag is not None:
                     try:
                         pub_date = datetime.datetime.fromisoformat(published_tag.text.replace('Z', '+00:00'))
@@ -648,7 +655,7 @@ def fetch_hacker_news_smart():
                 seen.add(link)
                 
                 # 解析时间
-                pub_date = datetime.datetime.now()
+                pub_date = datetime.datetime.now(datetime.timezone.utc)
                 if created_at:
                     try:
                         pub_date = datetime.datetime.fromisoformat(created_at.replace('Z', '+00:00'))
@@ -691,10 +698,12 @@ def fetch_techcrunch():
             pub_date_str = item.findtext("pubDate", "")
             
             # 解析日期
-            pub_date = datetime.datetime.now()
+            pub_date = datetime.datetime.now(datetime.timezone.utc)
             if pub_date_str:
                 try:
                     pub_date = email.utils.parsedate_to_datetime(pub_date_str)
+                    if pub_date.tzinfo is None:
+                        pub_date = pub_date.replace(tzinfo=datetime.timezone.utc)
                 except:
                     pass
             
@@ -737,7 +746,7 @@ def fetch_a16z():
                     "link": normalize_url(link),
                     "source": "a16z",
                     "desc": desc[:300],
-                    "pub_date": datetime.datetime.now()
+                    "pub_date": datetime.datetime.now(datetime.timezone.utc)
                 })
         
         print(f"  ✓ Found {len(articles)} articles")
@@ -830,7 +839,7 @@ def categorize(item: dict) -> str:
 
 def main():
     print("\n" + "="*70)
-    print("🚀 终极智能RSS聚合器 v3.0")
+    print("🚀 终极智能RSS聚合器 v3.1 (修复时区版)")
     print("="*70 + "\n")
     
     # 1. 抓取
@@ -919,7 +928,7 @@ def main():
             title=title,
             link=item['link'],
             description="\n".join(desc_parts),
-            pubDate=datetime.datetime.now()
+            pubDate=datetime.datetime.now(datetime.timezone.utc)
         ))
     
     # 注意：这里改成了正确的链接和文件名！
@@ -927,7 +936,7 @@ def main():
         title="🚀 Ultimate AI Feed - Authority First, Signal Over Noise",
         link="https://github.com/paramita619/hf-daily-paper-rss",
         description="Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.",
-        lastBuildDate=datetime.datetime.now(),
+        lastBuildDate=datetime.datetime.now(datetime.timezone.utc),
         items=rss_items
     )
     
