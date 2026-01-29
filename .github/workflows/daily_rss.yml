@@ -1,9 +1,9 @@
-name: Update RSS Feed
+name: Update RSS & Generate Report
 
 on:
   schedule:
-    - cron: '0 13 * * *' # 每天 UTC 时间 13:00 (北京时间晚上9点) 运行
-  workflow_dispatch: # 允许你手动点击按钮测试
+    - cron: '0 23 * * *' # 每天 UTC 23:00 (北京时间早7点) 运行
+  workflow_dispatch: # 允许手动触发
 
 jobs:
   build:
@@ -21,17 +21,25 @@ jobs:
         python-version: '3.9'
 
     - name: Install dependencies
+      # 安装所有需要的库
       run: |
         python -m pip install --upgrade pip
         pip install requests beautifulsoup4 PyRSS2Gen lxml
 
-    - name: Run script
+    - name: 1. Generate RSS Feed (v3.1)
+      # 第一步：运行主抓取程序，生成 edge_ai_daily.xml
       run: python main.py
 
+    - name: 2. Generate Deep Report (v4.0)
+      # 第二步：读取刚才生成的 XML，进行深度分析，生成 .eml 报告
+      # 注意：这里我们直接调用 python 脚本，并传入文件名参数
+      run: python hybrid_rss_v4.py edge_ai_daily.xml
+
     - name: Commit and push changes
+      # 第三步：把生成的 .xml 和 .eml 文件都保存回仓库
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add .
-        git commit -m "Update RSS feed" || exit 0
+        git commit -m "Auto-update: RSS Feed & Daily Report" || exit 0
         git push
