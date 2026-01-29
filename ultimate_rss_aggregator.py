@@ -1,5 +1,5 @@
 """
-🚀 终极智能RSS聚合器 v3.0
+🚀 终极智能RSS聚合器 v3.0 (GitHub Actions 版)
 ============================
 核心升级：
 1. 语义理解：关键词组合 + 上下文分析
@@ -21,6 +21,7 @@ from difflib import SequenceMatcher
 from collections import defaultdict
 import hashlib
 import json
+import email.utils
 
 # ================= 🧠 核心知识库 =================
 
@@ -693,8 +694,7 @@ def fetch_techcrunch():
             pub_date = datetime.datetime.now()
             if pub_date_str:
                 try:
-                    from email.utils import parsedate_to_datetime
-                    pub_date = parsedate_to_datetime(pub_date_str)
+                    pub_date = email.utils.parsedate_to_datetime(pub_date_str)
                 except:
                     pass
             
@@ -922,15 +922,16 @@ def main():
             pubDate=datetime.datetime.now()
         ))
     
+    # 注意：这里改成了正确的链接和文件名！
     rss = PyRSS2Gen.RSS2(
         title="🚀 Ultimate AI Feed - Authority First, Signal Over Noise",
-        link="https://github.com/yourusername/ultimate-rss",
+        link="https://github.com/paramita619/hf-daily-paper-rss",
         description="Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.",
         lastBuildDate=datetime.datetime.now(),
         items=rss_items
     )
     
-    output_file = "/home/claude/ultimate_feed.xml"
+    output_file = "edge_ai_daily.xml"
     with open(output_file, "w", encoding="utf-8") as f:
         rss.write_xml(f)
     
@@ -952,7 +953,8 @@ def main():
         print(f"  {cat}: {count}")
     
     print(f"\n✅ RSS generated: {output_file}")
-    print(f"🏆 Top article ({top_items[0]['score']}pts): {top_items[0]['title'][:60]}...")
+    if top_items:
+        print(f"🏆 Top article ({top_items[0]['score']}pts): {top_items[0]['title'][:60]}...")
     print("="*70)
 
 if __name__ == "__main__":
