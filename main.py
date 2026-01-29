@@ -840,4 +840,122 @@ def main():
     all_items.extend(fetch_huggingface())
     all_items.extend(fetch_arxiv())
     all_items.extend(fetch_hacker_news_smart())
-    all_items.extend(fetch_techcrunch
+    all_items.extend(fetch_techcrunch())
+    all_items.extend(fetch_a16z())
+    
+    print(f"\n📊 Total raw items: {len(all_items)}\n")
+    
+    # 2. 智能去重
+    print("🔄 Smart deduplication...")
+    unique_items = SmartDeduplicator.deduplicate(all_items)
+    print(f"  After dedup: {len(unique_items)} (removed {len(all_items) - len(unique_items)})\n")
+    
+    # 3. 评分
+    print("🎯 Scoring articles...\n")
+    scored_items = []
+    
+    for item in unique_items:
+        score, reasons = AdvancedScorer.comprehensive_score(
+            title=item.get("title", ""),
+            desc=item.get("desc", ""),
+            url=item.get("link", ""),
+            source=item.get("source", ""),
+            pub_date=item.get("pub_date")
+        )
+        
+        # 自适应阈值：不同来源不同标准
+        threshold = {
+            "HF Papers": 60,
+            "AlphaXiv": 60,
+            "TechCrunch": 70,
+            "a16z": 65,
+            "Hacker News": 75
+        }.get(item.get("source", ""), 70)
+        
+        if score >= threshold:
+            item["score"] = score
+            item["reasons"] = reasons
+            item["category"] = categorize(item)
+            scored_items.append(item)
+            
+            # 显示通过的文章
+            print(f"✅ [{score:3d}] {item['category']}")
+            print(f"   {item['title'][:75]}")
+            print(f"   {reasons[0] if reasons else ''}")
+            print()
+    
+    print(f"📊 Passed threshold: {len(scored_items)}\n")
+    
+    # 4. 智能选择Top 10
+    print("🎯 Selecting top 10...\n")
+    top_items = SmartSelector.select_top(scored_items, max_total=10)
+    
+    # 5. 生成RSS
+    print("📝 Generating RSS...\n")
+    rss_items = []
+    
+    for rank, item in enumerate(top_items, 1):
+        title = f"[{rank}] [{item['category']}] {item['title']}"
+        
+        desc_parts = [
+            f"<div style='font-family: sans-serif; padding: 10px;'>",
+            f"<p><strong>📊 Score: {item['score']}</strong> | Category: {item['category']}</p>",
+            f"<p><strong>📡 Source:</strong> {item['source']} | Domain: {get_domain(item['link'])}</p>",
+            f"<p><strong>✨ Why selected:</strong></p>",
+            f"<ul>"
+        ]
+        
+        for reason in item['reasons'][:8]:
+            desc_parts.append(f"<li>{reason}</li>")
+        
+        desc_parts.append("</ul>")
+        
+        if item.get('desc'):
+            desc_parts.append(f"<p><strong>📄 Summary:</strong> {item['desc'][:350]}...</p>")
+        
+        desc_parts.append("</div>")
+        
+        rss_items.append(PyRSS2Gen.RSSItem(
+            title=title,
+            link=item['link'],
+            description="\n".join(desc_parts),
+            pubDate=datetime.datetime.now()
+        ))
+    
+    # 注意：这里改成了正确的链接和文件名！
+    rss = PyRSS2Gen.RSS2(
+        title="🚀 Ultimate AI Feed - Authority First, Signal Over Noise",
+        link="https://github.com/paramita619/hf-daily-paper-rss",
+        description="Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.",
+        lastBuildDate=datetime.datetime.now(),
+        items=rss_items
+    )
+    
+    output_file = "edge_ai_daily.xml"
+    with open(output_file, "w", encoding="utf-8") as f:
+        rss.write_xml(f)
+    
+    # 6. 统计报告
+    print("="*70)
+    print("📊 SUMMARY REPORT")
+    print("="*70)
+    print(f"Total fetched: {len(all_items)}")
+    print(f"After dedup: {len(unique_items)}")
+    print(f"Passed filter: {len(scored_items)}")
+    print(f"Final selected: {len(top_items)}")
+    print(f"\n📂 By Category:")
+    
+    cat_counts = defaultdict(int)
+    for item in top_items:
+        cat_counts[item['category']] += 1
+    
+    for cat, count in sorted(cat_counts.items(), key=lambda x: x[1], reverse=True):
+        print(f"  {cat}: {count}")
+    
+    print(f"\n✅ RSS generated: {output_file}")
+    if top_items:
+        print(f"🏆 Top article ({top_items[0]['score']}pts): {top_items[0]['title'][:60]}...")
+    print("="*70)
+
+if __name__ == "__main__":
+    main()
