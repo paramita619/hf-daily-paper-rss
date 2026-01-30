@@ -18,6 +18,7 @@ from datetime import datetime
 import base64
 from urllib.parse import urlparse
 from collections import defaultdict
+from difflib import SequenceMatcher  
 import hashlib
 
 # ================= 🌐 深度网页抓取器 =================
