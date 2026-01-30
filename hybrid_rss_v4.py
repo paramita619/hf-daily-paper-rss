@@ -574,43 +574,45 @@ class TemplateEngine:
     @staticmethod
     def generate_chinese_title(analysis: dict, original_title: str) -> str:
         """生成精炼的中文标题 - 增加多样性"""
-        category = analysis['category']
-        themes = analysis['themes']
-        innovations = analysis['innovations']
-        entities = analysis['entities']
-        impact = analysis['impact']
-        
-        # 提取关键元素
-        tech_list = entities.get('technologies', [])
-        tech = tech_list[0] if tech_list else ''
-        
-        company_list = entities.get('companies', [])
-        company = company_list[0] if company_list else ''
-        
-        models_list = entities.get('models', [])
-        model = models_list[0] if models_list else ''
-        
-        # 从原标题提取关键信息（增强具体性）
-        original_lower = original_title.lower()
-        
-        # 提取数字/性能指标
-        perf_match = re.search(r'(\d+\.?\d*)\s*(x|times|percent|%)', original_lower)
-        perf_info = f"{perf_match.group(1)}{perf_match.group(2)}" if perf_match else None
-        
-        # 提取具体技术名词（大写开头的词）
-        specific_terms = re.findall(r'\b[A-Z][a-z]+(?:[A-Z][a-z]+)*\b', original_title)
-        specific_term = specific_terms[0] if specific_terms and len(specific_terms[0]) > 3 else None
+        try:
+            category = analysis['category']
+            themes = analysis['themes']
+            innovations = analysis['innovations']
+            entities = analysis['entities']
+            impact = analysis['impact']
+            
+            # 提取关键元素
+            tech_list = entities.get('technologies', [])
+            tech = tech_list[0] if tech_list else ''
+            
+            company_list = entities.get('companies', [])
+            company = company_list[0] if company_list else ''
+            
+            models_list = entities.get('models', [])
+            model = models_list[0] if models_list else ''
+            
+            # 从原标题提取关键信息（增强具体性）
+            original_lower = original_title.lower() if original_title else ''
+            
+            # 提取数字/性能指标
+            perf_match = re.search(r'(\d+\.?\d*)\s*(x|times|percent|%)', original_lower)
+            perf_info = f"{perf_match.group(1)}{perf_match.group(2)}" if perf_match else None
+            
+            # 提取具体技术名词（大写开头的词）
+            specific_terms = re.findall(r'\b[A-Z][a-z]+(?:[A-Z][a-z]+)*\b', original_title) if original_title else []
+            specific_term = specific_terms[0] if specific_terms and len(specific_terms[0]) > 3 else None
         
         # 根据类别和主题生成标题
         if category == '模型算法':
-            # 优先使用具体模型名
+            # 优先使用具体模型名（首字母大写）
             if model:
+                model_title = model.title() if len(model) > 3 else model.upper()
                 if perf_info:
-                    return f"{model}模型性能提升{perf_info}"
+                    return f"{model_title}模型性能提升{perf_info}"
                 elif '压缩' in ''.join(themes):
-                    return f"{model}轻量化压缩方案"
+                    return f"{model_title}轻量化压缩方案"
                 else:
-                    return f"{model}架构优化研究"
+                    return f"{model_title}架构优化研究"
             
             # 使用具体技术名
             if specific_term and specific_term.lower() not in ['the', 'and', 'for']:
@@ -707,6 +709,12 @@ class TemplateEngine:
                     return f"行业专家解读{specific_term}前景"
                 else:
                     return "AI领域资深专家访谈"
+                    
+        except Exception as e:
+            print(f"  ⚠️ 标题生成异常: {e}, 使用通用标题")
+            # 返回通用标题
+            category = analysis.get('category', '未知')
+            return f"AI{category}最新动态"
     
     @staticmethod
     def generate_key_points(analysis: dict, article_data: dict) -> dict:
