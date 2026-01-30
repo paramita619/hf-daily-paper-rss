@@ -18,7 +18,7 @@ from datetime import datetime
 import base64
 from urllib.parse import urlparse
 from collections import defaultdict
-from difflib import SequenceMatcher  
+from difflib import SequenceMatcher
 import hashlib
 
 # ================= 🌐 深度网页抓取器 =================
@@ -161,6 +161,7 @@ class DeepWebScraper:
             'author': '',
             'date': '',
             'source': '',
+            'organization': '',  # 新增
             'tags': []
         }
         
@@ -172,28 +173,120 @@ class DeepWebScraper:
                 metadata['author'] = elem.get_text().strip()
                 break
         
-        # 从URL推断来源
+        # 从URL推断来源和机构
         domain = urlparse(url).netloc
-        if 'arxiv.org' in domain:
-            metadata['source'] = 'arXiv'
-        elif 'huggingface.co' in domain:
-            metadata['source'] = 'Hugging Face'
-        elif 'github.com' in domain:
-            metadata['source'] = 'GitHub'
-        elif 'openai.com' in domain:
-            metadata['source'] = 'OpenAI'
-        elif 'anthropic.com' in domain:
-            metadata['source'] = 'Anthropic'
-        elif 'techcrunch.com' in domain:
-            metadata['source'] = 'TechCrunch'
-        else:
+        url_lower = url.lower()
+        
+        # 知名机构映射（扩展）
+        org_mapping = {
+            'arxiv.org': ('arXiv', 'arXiv'),
+            'huggingface.co': ('Hugging Face', 'Hugging Face'),
+            'github.com': ('GitHub', 'GitHub'),
+            'openai.com': ('OpenAI', 'OpenAI'),
+            'anthropic.com': ('Anthropic', 'Anthropic'),
+            'deepmind.com': ('DeepMind', 'DeepMind'),
+            'deepmind.google': ('DeepMind', 'DeepMind'),
+            'research.google': ('Google Research', 'Google'),
+            'google.com': ('Google', 'Google'),
+            'ai.meta.com': ('Meta AI', 'Meta'),
+            'meta.com': ('Meta', 'Meta'),
+            'microsoft.com': ('Microsoft', 'Microsoft'),
+            'nvidia.com': ('NVIDIA', 'NVIDIA'),
+            'apple.com': ('Apple', 'Apple'),
+            'techcrunch.com': ('TechCrunch', 'TechCrunch'),
+            'reuters.com': ('Reuters', 'Reuters'),
+            'bloomberg.com': ('Bloomberg', 'Bloomberg'),
+            'theverge.com': ('The Verge', 'The Verge'),
+            'wired.com': ('Wired', 'Wired'),
+            'x.com': ('Twitter/X', 'Twitter/X'),
+            'twitter.com': ('Twitter/X', 'Twitter/X'),
+            'stanford.edu': ('Stanford', 'Stanford'),
+            'mit.edu': ('MIT', 'MIT'),
+            'berkeley.edu': ('Berkeley', 'Berkeley'),
+            'cmu.edu': ('CMU', 'CMU'),
+            'macrumors.com': ('MacRumors', 'MacRumors'),
+        }
+        
+        # 查找匹配
+        found = False
+        for key, (source, org) in org_mapping.items():
+            if key in url_lower:
+                metadata['source'] = source
+                metadata['organization'] = org
+                found = True
+                break
+        
+        if not found:
             metadata['source'] = domain.replace('www.', '')
+            metadata['organization'] = domain.replace('www.', '').split('.')[0].title()
+        
+        # arXiv特殊处理 - 从页面提取第一作者机构
+        if 'arxiv.org' in url_lower:
+            org = DeepWebScraper._extract_arxiv_org(soup)
+            if org and org != 'arXiv':
+                metadata['organization'] = org
         
         # 提取标签
         tag_elems = soup.select('.tag, .label, [rel="tag"]')
         metadata['tags'] = [tag.get_text().strip() for tag in tag_elems[:10]]
         
         return metadata
+    
+    @staticmethod
+    def _extract_arxiv_org(soup: BeautifulSoup) -> str:
+        """从arXiv页面提取第一作者机构"""
+        try:
+            # 方法1: 查找authors div
+            authors_div = soup.find('div', class_='authors')
+            if not authors_div:
+                authors_div = soup.find('div', class_='ltx_authors')
+            
+            if authors_div:
+                # 查找第一个机构标记
+                affiliation = authors_div.find('span', class_='ltx_contact ltx_role_affiliation')
+                if not affiliation:
+                    affiliation = authors_div.find('div', class_='ltx_author_notes')
+                
+                if affiliation:
+                    org_text = affiliation.get_text(strip=True)
+                    # 标准化知名机构名
+                    org_map = {
+                        'MIT': ['Massachusetts Institute', 'MIT'],
+                        'Stanford': ['Stanford'],
+                        'Berkeley': ['Berkeley', 'UC Berkeley'],
+                        'CMU': ['Carnegie Mellon', 'CMU'],
+                        'Google': ['Google'],
+                        'Meta': ['Meta', 'Facebook'],
+                        'OpenAI': ['OpenAI'],
+                        'Microsoft': ['Microsoft'],
+                        'DeepMind': ['DeepMind'],
+                        'NVIDIA': ['NVIDIA'],
+                        'Apple': ['Apple'],
+                    }
+                    
+                    for standard_name, patterns in org_map.items():
+                        if any(p in org_text for p in patterns):
+                            return standard_name
+                    
+                    # 如果没有匹配，返回前30个字符
+                    return org_text[:30] if len(org_text) > 0 else 'arXiv'
+            
+            # 方法2: 从标题提取（如果标题中有括号信息）
+            title = soup.find('h1', class_='title')
+            if title:
+                title_text = title.get_text()
+                # 查找括号中的机构信息
+                import re
+                match = re.search(r'\(([^)]+)\)', title_text)
+                if match:
+                    org = match.group(1)
+                    if any(keyword in org for keyword in ['University', 'Institute', 'Lab', 'Inc', 'Corp']):
+                        return org[:30]
+        
+        except:
+            pass
+        
+        return 'arXiv'
     
     @staticmethod
     def _extract_entities(content: str, title: str) -> dict:
@@ -386,17 +479,53 @@ class SemanticAnalyzerV4:
             
             scores[category] = score
         
-        # 特殊规则
+        # 特殊规则 - 优先判断
         source = metadata.get('source', '').lower()
-        if 'arxiv' in source or 'huggingface' in source:
+        url = metadata.get('url', '').lower()
+        title_lower = metadata.get('title', '').lower()
+        
+        # 大V访谈识别 - Twitter/X链接或知名人物访谈
+        if 'x.com' in url or 'twitter.com' in url:
+            if any(name in text.lower() for name in ['karpathy', 'hinton', 'lecun', 'bengio', 'ng', 'altman']):
+                return '大V访谈'
+        
+        if entities.get('people') and any(word in text for word in ['interview', 'podcast', 'conversation', 'talk', 'says', 'discusses']):
+            return '大V访谈'
+        
+        if any(name in text.lower() for name in ['hinton', 'lecun', 'bengio', 'karpathy', 'altman']):
+            if any(word in text for word in ['interview', 'conversation', 'talk', 'podcast']):
+                return '大V访谈'
+        
+        # 平台底座识别 - 框架/工具/硬件/基础设施
+        platform_keywords = [
+            'pytorch', 'tensorflow', 'framework', 'library', 'toolkit',
+            'gpu', 'hardware', 'chip', 'processor', 'accelerator',
+            'infrastructure', 'deployment', 'serving', 'inference engine',
+            'compiler', 'runtime', 'api', 'sdk', 'cloud platform',
+            'h100', 'h200', 'a100', 'cuda', 'nvlink'
+        ]
+        if any(kw in text.lower() for kw in platform_keywords):
+            # 进一步判断是否真的是平台底座
+            if any(kw in text.lower() for kw in ['release', 'update', 'launch', 'version', 'announced']):
+                scores['平台底座'] += 15
+            if 'nvidia' in text.lower() or 'amd' in text.lower() or 'intel' in text.lower():
+                scores['平台底座'] += 10
+        
+        # arXiv论文 - 通常是模型算法
+        if 'arxiv' in source or 'arxiv.org' in url:
             scores['模型算法'] += 10
         
-        if any(name in text for name in ['hinton', 'lecun', 'bengio']):
-            if any(word in text for word in ['interview', 'conversation', 'talk']):
-                scores['大V访谈'] += 15
+        # 检查标题和内容的算法特征
+        algo_patterns = ['algorithm', 'model', 'learning', 'training', 'architecture', 'neural']
+        if any(pattern in title_lower or pattern in text.lower() for pattern in algo_patterns):
+            scores['模型算法'] += 5
         
-        if entities.get('people') and any(word in text for word in ['interview', 'podcast']):
-            scores['大V访谈'] += 10
+        # 公司产品发布 - 行业动态
+        companies = ['apple', 'google', 'microsoft', 'meta', 'amazon', 'openai', 'anthropic']
+        if any(comp in source or comp in text.lower() for comp in companies):
+            if any(word in text.lower() for word in ['announces', 'launches', 'releases', 'unveils', 'introduces']):
+                if 'product' in text.lower() or 'app' in text.lower() or 'service' in text.lower():
+                    scores['行业动态'] += 10
         
         # 返回得分最高的分类
         return max(scores, key=scores.get) if max(scores.values()) > 0 else '行业动态'
@@ -1209,7 +1338,7 @@ Content-Transfer-Encoding: 8bit
             background-color: #f5f5f5;
         }}
         .header {{
-            background: linear-gradient(135deg, #D97757 0%, #CC5533 100%);
+            background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
             color: white;
             padding: 40px 30px;
             border-radius: 12px 12px 0 0;
@@ -1222,6 +1351,7 @@ Content-Transfer-Encoding: 8bit
             font-weight: 700;
             letter-spacing: -0.5px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            color: #000000;
         }}
         .header p {{
             margin: 15px 0 0 0;
@@ -1236,8 +1366,8 @@ Content-Transfer-Encoding: 8bit
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }}
         h2 {{
-            color: #CC5533;
-            border-bottom: 3px solid #D97757;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
             padding-bottom: 12px;
             margin-top: 0;
             margin-bottom: 25px;
@@ -1253,7 +1383,7 @@ Content-Transfer-Encoding: 8bit
             overflow: hidden;
         }}
         .toc-table th {{
-            background: linear-gradient(135deg, #D97757 0%, #CC5533 100%);
+            background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
             color: white;
             padding: 16px 14px;
             text-align: left;
@@ -1270,31 +1400,31 @@ Content-Transfer-Encoding: 8bit
             border-bottom: none;
         }}
         .toc-table tr:hover {{
-            background-color: #FFF5F2;
+            background-color: #f8f9fe;
         }}
         .toc-table a {{
-            color: #CC5533;
+            color: #667eea;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.2s;
         }}
         .toc-table a:hover {{
-            color: #B84422;
+            color: #5568d3;
             text-decoration: underline;
         }}
         .category-cell {{
-            background-color: #FFF5F2;
+            background-color: #f8f9fe;
             font-weight: 700;
-            color: #CC5533;
+            color: #667eea;
             vertical-align: middle;
             text-align: center;
         }}
         .article-box {{
-            border: 2px solid #E8D5CF;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
             padding: 30px;
             margin: 30px 0;
-            background: linear-gradient(to bottom, #FFFAF8 0%, #ffffff 100%);
+            background: linear-gradient(to bottom, #f8f9fe 0%, #ffffff 100%);
             box-shadow: 0 2px 8px rgba(217, 119, 87, 0.08);
         }}
         .article-title {{
@@ -1309,19 +1439,19 @@ Content-Transfer-Encoding: 8bit
             font-size: 14px;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #f0e5e0;
+            border-bottom: 1px solid #eee;
         }}
         .summary-section {{
             background: white;
             padding: 18px;
             border-radius: 8px;
             margin: 18px 0;
-            border-left: 4px solid #D97757;
+            border-left: 4px solid #667eea;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }}
         .summary-title {{
             font-weight: 700;
-            color: #CC5533;
+            color: #667eea;
             margin-bottom: 10px;
             font-size: 16px;
         }}
@@ -1334,7 +1464,7 @@ Content-Transfer-Encoding: 8bit
         .detail-section {{
             margin-top: 20px;
             padding: 20px;
-            background: #FFFAF8;
+            background: #f8f9fe;
             border-radius: 8px;
             text-align: justify;
             line-height: 1.9;
@@ -1343,14 +1473,14 @@ Content-Transfer-Encoding: 8bit
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }}
         .detail-section strong {{
-            color: #CC5533;
+            color: #667eea;
             font-size: 16px;
         }}
         .back-button {{
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background: linear-gradient(135deg, #D97757 0%, #CC5533 100%);
+            background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
             color: white;
             text-decoration: none;
             border-radius: 6px;
@@ -1360,7 +1490,7 @@ Content-Transfer-Encoding: 8bit
             box-shadow: 0 2px 4px rgba(204, 85, 51, 0.3);
         }}
         .back-button:hover {{
-            background: linear-gradient(135deg, #CC5533 0%, #B84422 100%);
+            background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
             box-shadow: 0 4px 8px rgba(204, 85, 51, 0.4);
             transform: translateY(-1px);
         }}
@@ -1368,7 +1498,7 @@ Content-Transfer-Encoding: 8bit
             text-align: center;
             margin-top: 50px;
             padding-top: 25px;
-            border-top: 2px solid #E8D5CF;
+            border-top: 2px solid #e0e0e0;
             color: #7f8c8d;
             font-size: 14px;
         }}
@@ -1376,7 +1506,7 @@ Content-Transfer-Encoding: 8bit
             margin: 8px 0;
         }}
         .footer strong {{
-            color: #CC5533;
+            color: #667eea;
             font-size: 16px;
         }}
     </style>
@@ -1493,7 +1623,7 @@ def process_rss_to_eml(rss_file: str, output_dir: str = '.') -> str:
             'original_title': article_data['title'],
             'chinese_title': chinese_title,
             'category': analysis['category'],
-            'author': article_data['metadata'].get('source', '未知'),
+            'author': article_data['metadata'].get('organization', article_data['metadata'].get('source', '未知')),
             'key_points': key_points,
             'detailed_explanation': detailed_explanation,
             'analysis': analysis
