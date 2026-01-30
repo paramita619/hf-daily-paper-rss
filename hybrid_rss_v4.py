@@ -601,115 +601,115 @@ class TemplateEngine:
             # 提取具体技术名词（大写开头的词）
             specific_terms = re.findall(r'\b[A-Z][a-z]+(?:[A-Z][a-z]+)*\b', original_title) if original_title else []
             specific_term = specific_terms[0] if specific_terms and len(specific_terms[0]) > 3 else None
-        
-        # 根据类别和主题生成标题
-        if category == '模型算法':
-            # 优先使用具体模型名（首字母大写）
-            if model:
-                model_title = model.title() if len(model) > 3 else model.upper()
-                if perf_info:
-                    return f"{model_title}模型性能提升{perf_info}"
-                elif '压缩' in ''.join(themes):
-                    return f"{model_title}轻量化压缩方案"
-                else:
-                    return f"{model_title}架构优化研究"
             
-            # 使用具体技术名
-            if specific_term and specific_term.lower() not in ['the', 'and', 'for']:
-                if '端侧' in ''.join(themes) or 'edge' in original_lower:
-                    return f"{specific_term}端侧部署方法"
-                elif '压缩' in ''.join(themes):
-                    return f"{specific_term}模型压缩技术"
-                else:
-                    return f"{specific_term}算法创新"
-            
-            # 使用技术词
-            if tech:
-                tech_upper = tech.upper() if len(tech) <= 6 else tech.title()
-                if '端侧' in ''.join(themes):
-                    return f"{tech_upper}端侧优化突破"
-                elif '压缩' in ''.join(themes):
-                    return f"基于{tech_upper}的模型压缩"
-                elif perf_info:
-                    return f"{tech_upper}性能提升{perf_info}"
-                else:
-                    return f"{tech_upper}新型架构设计"
-            
-            # 通用但有区分度的标题
-            if '端侧' in ''.join(themes):
-                return f"边缘设备AI模型优化方案"
-            elif '压缩' in ''.join(themes):
-                return f"神经网络压缩最新进展"
-            elif '训练' in ''.join(themes):
-                return f"大模型训练效率优化"
-            else:
-                return f"深度学习算法创新研究"
-        
-        elif category == '平台底座':
-            if company:
-                comp_title = company.title()
-                if '硬件' in ''.join(themes):
-                    return f"{comp_title}发布AI硬件加速方案"
-                elif '开源' in ''.join(themes):
-                    return f"{comp_title}开源AI框架更新"
-                else:
-                    return f"{comp_title}推理引擎性能突破"
-            
-            if tech:
-                if '开源' in ''.join(themes):
-                    return f"{tech.title()}框架重大版本发布"
-                elif specific_term:
-                    return f"{specific_term}推理加速工具链"
-                else:
-                    return f"{tech.title()}运行时优化升级"
-            
-            # 通用标题
-            if '硬件' in ''.join(themes):
-                return f"新一代AI加速硬件架构"
-            elif '开源' in ''.join(themes):
-                return f"AI基础框架开源生态建设"
-            else:
-                return f"高性能推理引擎技术进展"
-        
-        elif category == '行业动态':
-            if company:
-                comp = company.title()
-                if '产品' in ''.join(themes):
-                    if specific_term:
-                        return f"{comp}推出{specific_term}智能产品"
+            # 根据类别和主题生成标题
+            if category == '模型算法':
+                # 优先使用具体模型名（首字母大写）
+                if model:
+                    model_title = model.title() if len(model) > 3 else model.upper()
+                    if perf_info:
+                        return f"{model_title}模型性能提升{perf_info}"
+                    elif '压缩' in ''.join(themes):
+                        return f"{model_title}轻量化压缩方案"
                     else:
-                        return f"{comp}发布AI增强新品"
-                else:
-                    if specific_term:
-                        return f"{comp}{specific_term}战略布局"
-                    else:
-                        return f"{comp}深化AI产业投入"
-            else:
-                if specific_term:
-                    return f"科技巨头布局{specific_term}领域"
-                else:
-                    return "AI产业竞争格局分析"
-        
-        else:  # 大V访谈
-            if entities.get('people'):
-                names = entities['people']
-                expert = names[0].title()
+                        return f"{model_title}架构优化研究"
                 
-                # 提取主题关键词
-                if 'safety' in original_lower or 'safe' in original_lower:
-                    return f"{expert}论AI安全与伦理"
-                elif 'future' in original_lower or 'trend' in original_lower:
-                    return f"{expert}展望AI未来趋势"
-                elif 'research' in original_lower:
-                    return f"{expert}分享最新研究成果"
+                # 使用具体技术名
+                if specific_term and specific_term.lower() not in ['the', 'and', 'for']:
+                    if '端侧' in ''.join(themes) or 'edge' in original_lower:
+                        return f"{specific_term}端侧部署方法"
+                    elif '压缩' in ''.join(themes):
+                        return f"{specific_term}模型压缩技术"
+                    else:
+                        return f"{specific_term}算法创新"
+                
+                # 使用技术词
+                if tech:
+                    tech_upper = tech.upper() if len(tech) <= 6 else tech.title()
+                    if '端侧' in ''.join(themes):
+                        return f"{tech_upper}端侧优化突破"
+                    elif '压缩' in ''.join(themes):
+                        return f"基于{tech_upper}的模型压缩"
+                    elif perf_info:
+                        return f"{tech_upper}性能提升{perf_info}"
+                    else:
+                        return f"{tech_upper}新型架构设计"
+                
+                # 通用但有区分度的标题
+                if '端侧' in ''.join(themes):
+                    return f"边缘设备AI模型优化方案"
+                elif '压缩' in ''.join(themes):
+                    return f"神经网络压缩最新进展"
+                elif '训练' in ''.join(themes):
+                    return f"大模型训练效率优化"
                 else:
-                    return f"{expert}谈AI技术发展"
-            else:
-                if specific_term:
-                    return f"行业专家解读{specific_term}前景"
+                    return f"深度学习算法创新研究"
+            
+            elif category == '平台底座':
+                if company:
+                    comp_title = company.title()
+                    if '硬件' in ''.join(themes):
+                        return f"{comp_title}发布AI硬件加速方案"
+                    elif '开源' in ''.join(themes):
+                        return f"{comp_title}开源AI框架更新"
+                    else:
+                        return f"{comp_title}推理引擎性能突破"
+                
+                if tech:
+                    if '开源' in ''.join(themes):
+                        return f"{tech.title()}框架重大版本发布"
+                    elif specific_term:
+                        return f"{specific_term}推理加速工具链"
+                    else:
+                        return f"{tech.title()}运行时优化升级"
+                
+                # 通用标题
+                if '硬件' in ''.join(themes):
+                    return f"新一代AI加速硬件架构"
+                elif '开源' in ''.join(themes):
+                    return f"AI基础框架开源生态建设"
                 else:
-                    return "AI领域资深专家访谈"
+                    return f"高性能推理引擎技术进展"
+            
+            elif category == '行业动态':
+                if company:
+                    comp = company.title()
+                    if '产品' in ''.join(themes):
+                        if specific_term:
+                            return f"{comp}推出{specific_term}智能产品"
+                        else:
+                            return f"{comp}发布AI增强新品"
+                    else:
+                        if specific_term:
+                            return f"{comp}{specific_term}战略布局"
+                        else:
+                            return f"{comp}深化AI产业投入"
+                else:
+                    if specific_term:
+                        return f"科技巨头布局{specific_term}领域"
+                    else:
+                        return "AI产业竞争格局分析"
+            
+            else:  # 大V访谈
+                if entities.get('people'):
+                    names = entities['people']
+                    expert = names[0].title()
                     
+                    # 提取主题关键词
+                    if 'safety' in original_lower or 'safe' in original_lower:
+                        return f"{expert}论AI安全与伦理"
+                    elif 'future' in original_lower or 'trend' in original_lower:
+                        return f"{expert}展望AI未来趋势"
+                    elif 'research' in original_lower:
+                        return f"{expert}分享最新研究成果"
+                    else:
+                        return f"{expert}谈AI技术发展"
+                else:
+                    if specific_term:
+                        return f"行业专家解读{specific_term}前景"
+                    else:
+                        return "AI领域资深专家访谈"
+                        
         except Exception as e:
             print(f"  ⚠️ 标题生成异常: {e}, 使用通用标题")
             # 返回通用标题
