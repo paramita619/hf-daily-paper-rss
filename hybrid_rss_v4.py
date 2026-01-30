@@ -1291,22 +1291,22 @@ Content-Transfer-Encoding: 8bit
             <div class="article-meta">分类: {category} | 机构: {author}</div>
             
             <div class="summary-section">
-                <div class="summary-title">📌 内容简述</div>
+                <div class="summary-title">📌 Content Overview | 内容简述</div>
                 <div class="summary-content">{key_points.get('content_brief', '')}</div>
             </div>
             
             <div class="summary-section">
-                <div class="summary-title">💡 关键创新</div>
+                <div class="summary-title">💡 Key Innovation | 关键创新</div>
                 <div class="summary-content">{key_points.get('key_innovation', '')}</div>
             </div>
             
             <div class="summary-section">
-                <div class="summary-title">🎯 洞察启示</div>
+                <div class="summary-title">🎯 Insights | 洞察启示</div>
                 <div class="summary-content">{key_points.get('insight', '')}</div>
             </div>
             
             <div class="detail-section">
-                <strong>详细说明：</strong><br><br>
+                <strong>Detailed Explanation | 详细说明：</strong><br><br>
                 {detail}
             </div>
             
@@ -1350,14 +1350,13 @@ Content-Transfer-Encoding: 8bit
             font-size: 32px;
             font-weight: 700;
             letter-spacing: -0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
             color: #000000;
         }}
         .header p {{
             margin: 15px 0 0 0;
-            opacity: 0.95;
             font-size: 16px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            color: #2c3e50;
+            font-weight: 600;
         }}
         .container {{
             background: white;
@@ -1442,12 +1441,10 @@ Content-Transfer-Encoding: 8bit
             border-bottom: 1px solid #eee;
         }}
         .summary-section {{
-            background: white;
-            padding: 18px;
-            border-radius: 8px;
+            padding: 18px 0;
             margin: 18px 0;
             border-left: 4px solid #667eea;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding-left: 18px;
         }}
         .summary-title {{
             font-weight: 700;
@@ -1463,14 +1460,11 @@ Content-Transfer-Encoding: 8bit
         }}
         .detail-section {{
             margin-top: 20px;
-            padding: 20px;
-            background: #f8f9fe;
-            border-radius: 8px;
+            padding: 20px 0;
             text-align: justify;
             line-height: 1.9;
             color: #444;
             font-size: 15px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }}
         .detail-section strong {{
             color: #667eea;
@@ -1518,14 +1512,14 @@ Content-Transfer-Encoding: 8bit
     </div>
     
     <div class="container">
-        <h2 id="toc">📋 内容速览</h2>
+        <h2 id="toc">📋 Content Overview | 内容速览</h2>
         
         <table class="toc-table">
             <thead>
                 <tr>
-                    <th width="15%">分类</th>
-                    <th width="60%">标题</th>
-                    <th width="25%">机构</th>
+                    <th width="15%">Category | 分类</th>
+                    <th width="60%">Title | 标题</th>
+                    <th width="25%">Organization | 机构</th>
                 </tr>
             </thead>
             <tbody>
@@ -1533,7 +1527,7 @@ Content-Transfer-Encoding: 8bit
             </tbody>
         </table>
         
-        <h2>📰 内容详情</h2>
+        <h2>📰 Detailed Content | 内容详情</h2>
         
         {details_html}
         
