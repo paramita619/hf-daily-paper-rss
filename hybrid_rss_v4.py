@@ -1414,7 +1414,7 @@ Content-Transfer-Encoding: 8bit
 
 # ================= 🚀 主流程编排 =================
 
-def process_rss_to_eml(rss_file: str, output_dir: str = '/home/claude') -> str:
+def process_rss_to_eml(rss_file: str, output_dir: str = '.') -> str:
     """
     主流程：从RSS文件生成EML报告
     
