@@ -573,7 +573,7 @@ class TemplateEngine:
     
     @staticmethod
     def generate_chinese_title(analysis: dict, original_title: str) -> str:
-        """生成精炼的中文标题"""
+        """生成精炼的中文标题 - 增加多样性"""
         category = analysis['category']
         themes = analysis['themes']
         innovations = analysis['innovations']
@@ -587,56 +587,126 @@ class TemplateEngine:
         company_list = entities.get('companies', [])
         company = company_list[0] if company_list else ''
         
+        models_list = entities.get('models', [])
+        model = models_list[0] if models_list else ''
+        
+        # 从原标题提取关键信息（增强具体性）
+        original_lower = original_title.lower()
+        
+        # 提取数字/性能指标
+        perf_match = re.search(r'(\d+\.?\d*)\s*(x|times|percent|%)', original_lower)
+        perf_info = f"{perf_match.group(1)}{perf_match.group(2)}" if perf_match else None
+        
+        # 提取具体技术名词（大写开头的词）
+        specific_terms = re.findall(r'\b[A-Z][a-z]+(?:[A-Z][a-z]+)*\b', original_title)
+        specific_term = specific_terms[0] if specific_terms and len(specific_terms[0]) > 3 else None
+        
         # 根据类别和主题生成标题
         if category == '模型算法':
-            if '端侧AI部署' in themes:
-                tech_name = tech.upper() if tech else 'AI'
-                return f"{tech_name}端侧部署技术突破"
-            elif '模型压缩优化' in themes:
-                tech_name = tech if tech else 'AI'
-                return f"新型{tech_name}模型压缩方法"
-            elif innovations and '性能提升' in innovations[0]:
-                tech_name = tech if tech else 'AI'
-                return f"高性能{tech_name}模型架构研究"
+            # 优先使用具体模型名
+            if model:
+                if perf_info:
+                    return f"{model}模型性能提升{perf_info}"
+                elif '压缩' in ''.join(themes):
+                    return f"{model}轻量化压缩方案"
+                else:
+                    return f"{model}架构优化研究"
+            
+            # 使用具体技术名
+            if specific_term and specific_term.lower() not in ['the', 'and', 'for']:
+                if '端侧' in ''.join(themes) or 'edge' in original_lower:
+                    return f"{specific_term}端侧部署方法"
+                elif '压缩' in ''.join(themes):
+                    return f"{specific_term}模型压缩技术"
+                else:
+                    return f"{specific_term}算法创新"
+            
+            # 使用技术词
+            if tech:
+                tech_upper = tech.upper() if len(tech) <= 6 else tech.title()
+                if '端侧' in ''.join(themes):
+                    return f"{tech_upper}端侧优化突破"
+                elif '压缩' in ''.join(themes):
+                    return f"基于{tech_upper}的模型压缩"
+                elif perf_info:
+                    return f"{tech_upper}性能提升{perf_info}"
+                else:
+                    return f"{tech_upper}新型架构设计"
+            
+            # 通用但有区分度的标题
+            if '端侧' in ''.join(themes):
+                return f"边缘设备AI模型优化方案"
+            elif '压缩' in ''.join(themes):
+                return f"神经网络压缩最新进展"
+            elif '训练' in ''.join(themes):
+                return f"大模型训练效率优化"
             else:
-                tech_name = tech.upper() if tech else 'AI'
-                return f"{tech_name}模型算法新进展"
+                return f"深度学习算法创新研究"
         
         elif category == '平台底座':
-            if '硬件加速' in themes:
-                comp_name = company if company else '新一代'
-                return f"{comp_name}AI加速平台发布"
-            elif '开源工具' in themes:
-                tech_name = tech if tech else 'AI'
-                return f"{tech_name}开源框架重大更新"
+            if company:
+                comp_title = company.title()
+                if '硬件' in ''.join(themes):
+                    return f"{comp_title}发布AI硬件加速方案"
+                elif '开源' in ''.join(themes):
+                    return f"{comp_title}开源AI框架更新"
+                else:
+                    return f"{comp_title}推理引擎性能突破"
+            
+            if tech:
+                if '开源' in ''.join(themes):
+                    return f"{tech.title()}框架重大版本发布"
+                elif specific_term:
+                    return f"{specific_term}推理加速工具链"
+                else:
+                    return f"{tech.title()}运行时优化升级"
+            
+            # 通用标题
+            if '硬件' in ''.join(themes):
+                return f"新一代AI加速硬件架构"
+            elif '开源' in ''.join(themes):
+                return f"AI基础框架开源生态建设"
             else:
-                tech_name = tech if tech else 'AI'
-                return f"{tech_name}推理引擎性能优化"
+                return f"高性能推理引擎技术进展"
         
         elif category == '行业动态':
             if company:
                 comp = company.title()
-                if '产品发布' in themes:
-                    return f"{comp}发布AI驱动新品"
+                if '产品' in ''.join(themes):
+                    if specific_term:
+                        return f"{comp}推出{specific_term}智能产品"
+                    else:
+                        return f"{comp}发布AI增强新品"
                 else:
-                    return f"{comp}AI战略布局解析"
+                    if specific_term:
+                        return f"{comp}{specific_term}战略布局"
+                    else:
+                        return f"{comp}深化AI产业投入"
             else:
-                return "科技巨头AI产品动态"
+                if specific_term:
+                    return f"科技巨头布局{specific_term}领域"
+                else:
+                    return "AI产业竞争格局分析"
         
         else:  # 大V访谈
             if entities.get('people'):
-                name_map = {
-                    'hinton': 'Hinton',
-                    'lecun': 'LeCun',
-                    'bengio': 'Bengio',
-                    'altman': 'Sam Altman',
-                    'hassabis': 'Hassabis'
-                }
-                person = entities['people'][0]
-                cn_name = name_map.get(person, person.title())
-                return f"{cn_name}谈AI未来发展"
+                names = entities['people']
+                expert = names[0].title()
+                
+                # 提取主题关键词
+                if 'safety' in original_lower or 'safe' in original_lower:
+                    return f"{expert}论AI安全与伦理"
+                elif 'future' in original_lower or 'trend' in original_lower:
+                    return f"{expert}展望AI未来趋势"
+                elif 'research' in original_lower:
+                    return f"{expert}分享最新研究成果"
+                else:
+                    return f"{expert}谈AI技术发展"
             else:
-                return "AI领域专家深度访谈"
+                if specific_term:
+                    return f"行业专家解读{specific_term}前景"
+                else:
+                    return "AI领域资深专家访谈"
     
     @staticmethod
     def generate_key_points(analysis: dict, article_data: dict) -> dict:
@@ -941,6 +1011,50 @@ class EMLGenerator:
     def generate_eml(articles: list, date_str: str) -> str:
         """生成完整EML报告"""
         
+        # ========== 🚨 标题去重：严格过滤相似标题 ==========
+        print("\n🔍 检查标题相似度...")
+        unique_articles = []
+        seen_titles = []
+        
+        for article in articles:
+            title = article.get('chinese_title', '')
+            is_duplicate = False
+            
+            # 检查与已有标题的相似度
+            for seen_title in seen_titles:
+                # 去除空格和标点后比较
+                clean_title = ''.join(c.lower() for c in title if c.isalnum())
+                clean_seen = ''.join(c.lower() for c in seen_title if c.isalnum())
+                
+                similarity = SequenceMatcher(None, clean_title, clean_seen).ratio()
+                
+                # 相似度超过60%视为重复（更严格）
+                # 或者核心词完全相同也视为重复
+                core_words_title = set([w for w in title.split() if len(w) > 1])
+                core_words_seen = set([w for w in seen_title.split() if len(w) > 1])
+                word_overlap = len(core_words_title & core_words_seen) / max(len(core_words_title), len(core_words_seen), 1)
+                
+                if similarity > 0.60 or word_overlap > 0.7:
+                    print(f"  ❌ 相似标题 (文字{similarity:.0%}/词汇{word_overlap:.0%}): '{title}'")
+                    print(f"     与已有标题: '{seen_title}'")
+                    is_duplicate = True
+                    break
+            
+            if not is_duplicate:
+                unique_articles.append(article)
+                seen_titles.append(title)
+                print(f"  ✅ 保留: '{title}'")
+        
+        print(f"\n📊 去重结果: {len(articles)} → {len(unique_articles)} 篇")
+        
+        if not unique_articles:
+            print("⚠️ 警告: 去重后没有文章了！")
+            return ""
+        
+        # 使用去重后的文章列表
+        articles = unique_articles
+        # ========== 去重结束 ==========
+        
         # 按分类排序
         category_order = ["模型算法", "平台底座", "行业动态", "大V访谈"]
         articles_sorted = sorted(
@@ -1086,23 +1200,25 @@ Content-Transfer-Encoding: 8bit
             background-color: #f5f5f5;
         }}
         .header {{
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #D97757 0%, #CC5533 100%);
             color: white;
             padding: 40px 30px;
             border-radius: 12px 12px 0 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
         }}
         .header h1 {{
             margin: 0;
             font-size: 32px;
             font-weight: 700;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }}
         .header p {{
             margin: 15px 0 0 0;
             opacity: 0.95;
             font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }}
         .container {{
             background: white;
@@ -1111,13 +1227,13 @@ Content-Transfer-Encoding: 8bit
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }}
         h2 {{
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
+            color: #CC5533;
+            border-bottom: 3px solid #D97757;
             padding-bottom: 12px;
             margin-top: 0;
             margin-bottom: 25px;
             font-size: 26px;
-            font-weight: 600;
+            font-weight: 700;
         }}
         .toc-table {{
             width: 100%;
@@ -1128,12 +1244,13 @@ Content-Transfer-Encoding: 8bit
             overflow: hidden;
         }}
         .toc-table th {{
-            background-color: #667eea;
+            background: linear-gradient(135deg, #D97757 0%, #CC5533 100%);
             color: white;
             padding: 16px 14px;
             text-align: left;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }}
         .toc-table td {{
             padding: 14px;
@@ -1144,32 +1261,32 @@ Content-Transfer-Encoding: 8bit
             border-bottom: none;
         }}
         .toc-table tr:hover {{
-            background-color: #f8f9fe;
+            background-color: #FFF5F2;
         }}
         .toc-table a {{
-            color: #667eea;
+            color: #CC5533;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.2s;
         }}
         .toc-table a:hover {{
-            color: #5568d3;
+            color: #B84422;
             text-decoration: underline;
         }}
         .category-cell {{
-            background-color: #f0f4ff;
-            font-weight: 600;
-            color: #667eea;
+            background-color: #FFF5F2;
+            font-weight: 700;
+            color: #CC5533;
             vertical-align: middle;
             text-align: center;
         }}
         .article-box {{
-            border: 2px solid #e0e0e0;
+            border: 2px solid #E8D5CF;
             border-radius: 10px;
             padding: 30px;
             margin: 30px 0;
-            background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            background: linear-gradient(to bottom, #FFFAF8 0%, #ffffff 100%);
+            box-shadow: 0 2px 8px rgba(217, 119, 87, 0.08);
         }}
         .article-title {{
             font-size: 24px;
@@ -1183,19 +1300,19 @@ Content-Transfer-Encoding: 8bit
             font-size: 14px;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f0e5e0;
         }}
         .summary-section {{
             background: white;
             padding: 18px;
             border-radius: 8px;
             margin: 18px 0;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #D97757;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }}
         .summary-title {{
-            font-weight: 600;
-            color: #667eea;
+            font-weight: 700;
+            color: #CC5533;
             margin-bottom: 10px;
             font-size: 16px;
         }}
@@ -1208,7 +1325,7 @@ Content-Transfer-Encoding: 8bit
         .detail-section {{
             margin-top: 20px;
             padding: 20px;
-            background: white;
+            background: #FFFAF8;
             border-radius: 8px;
             text-align: justify;
             line-height: 1.9;
@@ -1217,29 +1334,32 @@ Content-Transfer-Encoding: 8bit
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }}
         .detail-section strong {{
-            color: #667eea;
+            color: #CC5533;
             font-size: 16px;
         }}
         .back-button {{
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #667eea;
+            background: linear-gradient(135deg, #D97757 0%, #CC5533 100%);
             color: white;
             text-decoration: none;
             border-radius: 6px;
             font-size: 14px;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(204, 85, 51, 0.3);
         }}
         .back-button:hover {{
-            background-color: #5568d3;
+            background: linear-gradient(135deg, #CC5533 0%, #B84422 100%);
+            box-shadow: 0 4px 8px rgba(204, 85, 51, 0.4);
+            transform: translateY(-1px);
         }}
         .footer {{
             text-align: center;
             margin-top: 50px;
             padding-top: 25px;
-            border-top: 2px solid #e0e0e0;
+            border-top: 2px solid #E8D5CF;
             color: #7f8c8d;
             font-size: 14px;
         }}
@@ -1247,7 +1367,7 @@ Content-Transfer-Encoding: 8bit
             margin: 8px 0;
         }}
         .footer strong {{
-            color: #667eea;
+            color: #CC5533;
             font-size: 16px;
         }}
     </style>
@@ -1294,7 +1414,7 @@ Content-Transfer-Encoding: 8bit
 
 # ================= 🚀 主流程编排 =================
 
-def process_rss_to_eml(rss_file: str, output_dir: str = '.') -> str:
+def process_rss_to_eml(rss_file: str, output_dir: str = '/home/claude') -> str:
     """
     主流程：从RSS文件生成EML报告
     
