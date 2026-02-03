@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<rss version="2.0"><channel><title>🚀 Ultimate AI Feed - Authority First, Signal Over Noise</title><link>https://github.com/paramita619/hf-daily-paper-rss</link><description>Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.</description><lastBuildDate>Tue, 03 Feb 2026 22:01:34 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[1] [平台底座] Show HN: Free On-Device AI SDK to Run PyTorch on Mobile NPUs (Open Source)</title><link>https://github.com/zetic-ai/ZETIC_MLange_apps</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+<rss version="2.0"><channel><title>🚀 Ultimate AI Feed - Authority First, Signal Over Noise</title><link>https://github.com/paramita619/hf-daily-paper-rss</link><description>Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.</description><lastBuildDate>Tue, 03 Feb 2026 23:18:26 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[1] [平台底座] Show HN: Free On-Device AI SDK to Run PyTorch on Mobile NPUs (Open Source)</title><link>https://github.com/zetic-ai/ZETIC_MLange_apps</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 164&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: github.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -12,7 +12,7 @@
 &lt;li&gt;opensource_tool&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.8&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[2] [模型算法] Energy-Efficient Neuromorphic Computing for Edge AI: A Framework with Adaptive Spiking Neural Networks and Hardware-Aware Optimization</title><link>http://arxiv.org/abs/2602.02439v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[2] [模型算法] Energy-Efficient Neuromorphic Computing for Edge AI: A Framework with Adaptive Spiking Neural Networks and Hardware-Aware Optimization</title><link>http://arxiv.org/abs/2602.02439v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 157&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -24,7 +24,7 @@
 &lt;li&gt;TimeFactor:×0.9&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Edge AI applications increasingly require ultra-low-power, low-latency inference. Neuromorphic computing based on event-driven spiking neural networks (SNNs) offers an attractive path, but practical deployment on resource-constrained devices is limited by training difficulty, hardware-mapping overheads, and sensitivity to temporal dynamics. We pres...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[3] [大V/权威] Xcode moves into agentic coding with deeper OpenAI and Anthropic integrations</title><link>https://techcrunch.com/2026/02/03/xcode-moves-into-agentic-coding-with-deeper-openai-and-anthropic-integrations/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[3] [大V/权威] Xcode moves into agentic coding with deeper OpenAI and Anthropic integrations</title><link>https://techcrunch.com/2026/02/03/xcode-moves-into-agentic-coding-with-deeper-openai-and-anthropic-integrations/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 155&lt;/strong&gt; | Category: 大V/权威&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -36,7 +36,7 @@
 &lt;li&gt;❌Industry-Gate:fail(-30)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Xcode 26.3 offers agentic coding capabilities with Anthropic's Claude Agent and OpenAI's Codex....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[4] [大V/权威] OpenAI launches new macOS app for agentic coding</title><link>https://techcrunch.com/2026/02/02/openai-launches-new-macos-app-for-agentic-coding/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[4] [大V/权威] OpenAI launches new macOS app for agentic coding</title><link>https://techcrunch.com/2026/02/02/openai-launches-new-macos-app-for-agentic-coding/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 153&lt;/strong&gt; | Category: 大V/权威&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -49,7 +49,7 @@
 &lt;li&gt;TimeFactor:×0.9&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; OpenAI has released a new macOS app for Codex, integrating many of the agentic coding practices that have become popular since Codex launched last year....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[5] [大V/权威] Nvidia CEO pushes back against report that his company’s $100B OpenAI investment has stalled</title><link>https://techcrunch.com/2026/01/31/nvidia-ceo-pushes-back-against-report-that-his-companys-100b-openai-investment-has-stalled/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[5] [大V/权威] Nvidia CEO pushes back against report that his company’s $100B OpenAI investment has stalled</title><link>https://techcrunch.com/2026/01/31/nvidia-ceo-pushes-back-against-report-that-his-companys-100b-openai-investment-has-stalled/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 148&lt;/strong&gt; | Category: 大V/权威&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -62,7 +62,7 @@
 &lt;li&gt;TimeFactor:×0.8&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Nvidia CEO Jensen Huang said that a recent report of friction between his company and OpenAI was “nonsense.”...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[6] [模型算法] RE-TRAC: REcursive TRAjectory Compression for Deep Search Agents</title><link>http://arxiv.org/abs/2602.02486v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[6] [模型算法] RE-TRAC: REcursive TRAjectory Compression for Deep Search Agents</title><link>http://arxiv.org/abs/2602.02486v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 135&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -74,7 +74,7 @@
 &lt;li&gt;TimeFactor:×0.9&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; LLM-based deep research agents are largely built on the ReAct framework. This linear design makes it difficult to revisit earlier states, branch into alternative search directions, or maintain global awareness under long contexts, often leading to local optima, redundant exploration, and inefficient search. We propose Re-TRAC, an agentic framework ...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[7] [模型算法] Rethinking Selective Knowledge Distillation</title><link>https://huggingface.co/papers/2602.01395</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[7] [模型算法] Rethinking Selective Knowledge Distillation</title><link>https://huggingface.co/papers/2602.01395</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 125&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; HF Papers | Domain: huggingface.co&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -84,7 +84,7 @@
 &lt;li&gt;L2-Tech:knowledge distillation(+25)&lt;/li&gt;
 &lt;li&gt;L2-Tech:distillation(+25)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[8] [模型算法] Repurposing Protein Language Models for Latent Flow-Based Fitness Optimization</title><link>http://arxiv.org/abs/2602.02425v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[8] [模型算法] Repurposing Protein Language Models for Latent Flow-Based Fitness Optimization</title><link>http://arxiv.org/abs/2602.02425v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 121&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -95,19 +95,19 @@
 &lt;li&gt;TimeFactor:×0.9&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Protein fitness optimization is challenged by a vast combinatorial landscape where high-fitness variants are extremely sparse. Many current methods either underperform or require computationally expensive gradient-based sampling. We present CHASE, a framework that repurposes the evolutionary knowledge of pretrained protein language models by compre...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[9] [平台底座] Executorch: On-device AI across mobile, embedded and edge for PyTorch</title><link>https://github.com/pytorch/executorch</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[9] [平台底座] Executorch: On-device AI across mobile, embedded and edge for PyTorch</title><link>https://github.com/pytorch/executorch</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 112&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: github.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Source:Hacker News(+10)&lt;/li&gt;
 &lt;li&gt;✓A-Domain:github.com(+30)&lt;/li&gt;
-&lt;li&gt;L1-Tech:on-device ai(+40)&lt;/li&gt;
 &lt;li&gt;L1-Tech:executorch(+40)&lt;/li&gt;
+&lt;li&gt;L1-Tech:on-device ai(+40)&lt;/li&gt;
 &lt;li&gt;L1-Tech:on-device(+40)&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.7&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item><item><title>[10] [平台底座] Local Browser – On-Device AI Web Automation</title><link>https://github.com/RunanywhereAI/on-device-browser-agent</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item><item><title>[10] [平台底座] Local Browser – On-Device AI Web Automation</title><link>https://github.com/RunanywhereAI/on-device-browser-agent</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 84&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: github.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -118,4 +118,4 @@
 &lt;li&gt;L1-Tech:on-device(+40)&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.7&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 22:01:34 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><pubDate>Tue, 03 Feb 2026 23:18:26 GMT</pubDate></item></channel></rss>
