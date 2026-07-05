@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<rss version="2.0"><channel><title>🚀 Ultimate AI Feed - Authority First, Signal Over Noise</title><link>https://github.com/paramita619/hf-daily-paper-rss</link><description>Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.</description><lastBuildDate>Sat, 04 Jul 2026 23:50:52 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[1] [大V/权威] Anthropic is discussing a new custom chip with Samsung</title><link>https://techcrunch.com/2026/07/02/anthropic-is-discussing-a-new-custom-chip-with-samsung/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+<rss version="2.0"><channel><title>🚀 Ultimate AI Feed - Authority First, Signal Over Noise</title><link>https://github.com/paramita619/hf-daily-paper-rss</link><description>Top 10 daily: semantic analysis, smart dedup, authority-first, quality over quantity.</description><lastBuildDate>Sun, 05 Jul 2026 23:53:49 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[1] [大V/权威] Anthropic is discussing a new custom chip with Samsung</title><link>https://techcrunch.com/2026/07/02/anthropic-is-discussing-a-new-custom-chip-with-samsung/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 192&lt;/strong&gt; | Category: 大V/权威&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -13,7 +13,7 @@
 &lt;li&gt;TimeFactor:×0.8&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; The news comes about a week after OpenAI announced its own custom AI chip in a partnership with Broadcom....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[2] [大V/权威] Microsoft launches its own AI deployment company with $2.5 billion commitment</title><link>https://techcrunch.com/2026/07/02/microsoft-launches-its-own-ai-deployment-company-with-2-5-billion-commitment/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[2] [大V/权威] Microsoft launches its own AI deployment company with $2.5 billion commitment</title><link>https://techcrunch.com/2026/07/02/microsoft-launches-its-own-ai-deployment-company-with-2-5-billion-commitment/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 192&lt;/strong&gt; | Category: 大V/权威&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -27,7 +27,7 @@
 &lt;li&gt;TimeFactor:×0.8&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Microsoft follows Amazon, OpenAI, and Anthropic with its new AI deployment group....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[3] [模型算法] DuoMem: Towards Capable On-Device Memory Agents via Dual-Space Distillation</title><link>https://huggingface.co/papers/2606.29961</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[3] [模型算法] DuoMem: Towards Capable On-Device Memory Agents via Dual-Space Distillation</title><link>https://huggingface.co/papers/2606.29961</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 140&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; HF Papers | Domain: huggingface.co&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -37,7 +37,7 @@
 &lt;li&gt;L1-Tech:on-device(+40)&lt;/li&gt;
 &lt;li&gt;L2-Tech:distillation(+25)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[4] [平台底座] Running PyTorch Models on Apple Silicon GPUs with the ExecuTorch MLX Delegate</title><link>https://pytorch.org/blog/running-pytorch-models-on-apple-silicon-gpus-with-the-executorch-mlx-delegate/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[4] [平台底座] Running PyTorch Models on Apple Silicon GPUs with the ExecuTorch MLX Delegate</title><link>https://pytorch.org/blog/running-pytorch-models-on-apple-silicon-gpus-with-the-executorch-mlx-delegate/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 112&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: pytorch.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -49,7 +49,7 @@
 &lt;li&gt;✓Industry-Gate:pass(+20)&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.7&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[5] [模型算法] Alignment Is All You Need For X-to-4D Generation</title><link>http://arxiv.org/abs/2607.02516v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[5] [模型算法] Alignment Is All You Need For X-to-4D Generation</title><link>http://arxiv.org/abs/2607.02516v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 104&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -61,7 +61,7 @@
 &lt;li&gt;TimeFactor:×0.8&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Generative diffusion models excel at synthesizing high-quality images, videos, and 3D content under multimodal control. However, arbitrary user-defined modality-to-4D (X-to-4D) generation remains challenging due to the high cost of constructing diverse datasets and the limited scalability of existing methods. This paper presents Align4D, a flexible...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[6] [模型算法] OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers</title><link>http://arxiv.org/abs/2607.02461v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[6] [模型算法] OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers</title><link>http://arxiv.org/abs/2607.02461v1</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 104&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; AlphaXiv | Domain: arxiv.org&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -74,7 +74,7 @@
 &lt;li&gt;TimeFactor:×0.8&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Diffusion transformers (DiTs) achieve state-of-the-art image and video generation, but their multi-step sampling and growing parameter count make inference expensive. Post-training quantization (PTQ) is the natural remedy, yet DiT activations shift across timesteps, prompts, and guidance branches, forcing prior methods to re-fit calibration data fo...&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[7] [模型算法] Denser neq Better: Limits of On-Policy Self-Distillation for Continual Post-Training</title><link>https://huggingface.co/papers/2607.01763</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[7] [模型算法] Denser neq Better: Limits of On-Policy Self-Distillation for Continual Post-Training</title><link>https://huggingface.co/papers/2607.01763</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 100&lt;/strong&gt; | Category: 模型算法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; HF Papers | Domain: huggingface.co&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -83,7 +83,7 @@
 &lt;li&gt;🔒S-Domain:huggingface.co(+50)&lt;/li&gt;
 &lt;li&gt;L2-Tech:distillation(+25)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[8] [平台底座] On-Device AI Coming to React Native with Gemma and React Native Executorch</title><link>https://twitter.com/swmansion/status/2051323788793352496</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[8] [平台底座] On-Device AI Coming to React Native with Gemma and React Native Executorch</title><link>https://twitter.com/swmansion/status/2051323788793352496</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 91&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: twitter.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -94,7 +94,7 @@
 &lt;li&gt;L1-Tech:on-device ai(+40)&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.7&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[9] [平台底座] Refloow Photo Studio – A local, offline photo editor with on-device AI</title><link>https://github.com/Refloow/Refloow-Photo-Studio</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[9] [平台底座] Refloow Photo Studio – A local, offline photo editor with on-device AI</title><link>https://github.com/Refloow/Refloow-Photo-Studio</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 84&lt;/strong&gt; | Category: 平台底座&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; Hacker News | Domain: github.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -105,7 +105,7 @@
 &lt;li&gt;L1-Tech:on-device ai(+40)&lt;/li&gt;
 &lt;li&gt;TimeFactor:×0.7&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item><item><title>[10] [行业动态] Meta quietly launches vibe-coded gaming app Pocket</title><link>https://techcrunch.com/2026/07/02/meta-quietly-launches-vibe-coded-gaming-app-pocket/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item><item><title>[10] [行业动态] Meta quietly launches vibe-coded gaming app Pocket</title><link>https://techcrunch.com/2026/07/02/meta-quietly-launches-vibe-coded-gaming-app-pocket/</link><description>&lt;div style='font-family: sans-serif; padding: 10px;'&gt;
 &lt;p&gt;&lt;strong&gt;📊 Score: 80&lt;/strong&gt; | Category: 行业动态&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;📡 Source:&lt;/strong&gt; TechCrunch | Domain: techcrunch.com&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;✨ Why selected:&lt;/strong&gt;&lt;/p&gt;
@@ -117,4 +117,4 @@
 &lt;li&gt;TimeFactor:×0.8&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;📄 Summary:&lt;/strong&gt; Meta has quietly launched Pocket, an experimental AI app that lets users generate and share interactive mini games using text prompts....&lt;/p&gt;
-&lt;/div&gt;</description><pubDate>Sat, 04 Jul 2026 23:50:52 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><pubDate>Sun, 05 Jul 2026 23:53:49 GMT</pubDate></item></channel></rss>
